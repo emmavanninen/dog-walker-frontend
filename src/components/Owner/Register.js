@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import './Owner.css'
-
+import { ownerRegister } from '../../redux/actions/actions'
 
 class OwnerRegister extends Component {
   state = {
@@ -18,6 +19,8 @@ class OwnerRegister extends Component {
   }
   handleSubmit = event => {
     event.preventDefault()
+
+    // this.props.ownerRegister(this.state)
   }
   render() {
     return (
@@ -114,4 +117,9 @@ class OwnerRegister extends Component {
     )
   }
 }
-export default OwnerRegister
+
+const mapStateToProps = state => ({
+  auth: state.authReducer
+})
+
+export default connect(mapStateToProps, { ownerRegister })(OwnerRegister)
